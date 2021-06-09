@@ -12,7 +12,7 @@ const raisedToTheThird = (arr) => {
   // Solution code here...
   let answer = [];
   arr.forEach( number => {
-    answer.push(Math.pow(number, 3))
+    answer.push(Math.pow(number, 3));
   });
   return answer;
 };
@@ -71,10 +71,10 @@ const forEachTwoToThe = (arr) => {
   // Solution code here...
   let answer = [];
   arr.forEach( number => {
-    answer.push(Math.pow(2, number))
+    answer.push(Math.pow(2, number));
   });
   return answer;
-  };
+};
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6

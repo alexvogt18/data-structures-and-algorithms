@@ -123,17 +123,7 @@ Return an array containing all the matches.
 ------------------------------------------------------------------------------------------------ */
 
 const isCapitalized = (str) => {
-  let ele = /\b[A-Z]/;
-  let answer = [];
-  let result = str.split(' ');
-  result.forEach((word) => {
-    if(ele.test(word) === true) {
-      answer.push(word);
-    } else{
-      return;
-    }
-  });
-  return answer;
+  return str.match(/\b[A-Z]\w*\b/g) || [];
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -144,9 +134,11 @@ Write a function named citiesAtoJ that takes in an array of city names and uses 
 
 const citiesAtoJ = (arr) => {
   // Solution code here...
-  let ele = new RegExp('[A-J],g');
-  let result = arr.match(ele);
-  return result;
+  let ele = /^[A-J]\w*/g;
+  let answer = arr.filter((city) => {
+    return city.match(ele);
+  });
+  return answer;
 };
 
 /* ------------------------------------------------------------------------------------------------

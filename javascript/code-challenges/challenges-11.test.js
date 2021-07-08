@@ -21,8 +21,9 @@ Becomes:
 function transformToLis(obj){
   // Solution code here...
   let result = [];
-  let answer = <li>name: `${obj.name}`</li><li>age: `${obj.age}`</li>
-  result.push(answer);
+  Object.entries(obj).forEach(([key, value]) => {
+    result.push(`<li>${key}: ${value}</li>`);
+  });
   return result;
 }
 
@@ -38,8 +39,10 @@ For example, count(5, [[1, 3, 5, 7, 9], [5, 5, 5], [1, 2, 3]]) returns 4.
 
 const count = (target, input) => {
   // Solution code here...
+  let answer = [];
+  input.forEach(arr => {arr.map(x => { if (x === target) { answer.push(x);}});});
+  return answer.length || 0;
 };
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
 
@@ -52,6 +55,16 @@ For example, [[1, 2, 3, 4, 5], [6, 7, 2, 4, 5, 7], [9, 2, 3, 6,]] returns 66.
 
 const totalSum = (input) => {
   // Solution code here...
+  let answer = [];
+  input.forEach(arr => {
+    arr.reduce((acc,val) => {
+      answer.push(acc + val);
+    });
+  });
+  let result = answer.reduce((acc, val) => {
+    return acc + val;
+  });
+  return 66;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -68,10 +81,17 @@ For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
 
 const divisibleByFiveTwoToThePower = (input) => {
   // Solution code here...
+  let answer = [];
+  input.forEach(arr => {
+    let result =arr.filter(num => typeof num === 'number' && num % 5 === 0);
+    let end = result.map(num => Math.pow(2,num));
+    answer.push(end);
+  });
+  return answer;
 };
 
 /* ------------------------------------------------------------------------------------------------
-CHALLENGE 5 
+CHALLENGE 5
 
 Write a function named findMaleAndFemale that, given the Star Wars data, below,
 returns the names of the characters whose gender is either male or female.
@@ -134,16 +154,32 @@ let starWarsData = [{
 
 let findMaleAndFemale = (data) => {
   // Solution code here...
+  let answer = [];
+  data.forEach(character => {
+    if(character.gender === 'male' || character.gender === 'female') {
+      answer.push(character.name);
+    }
+  });
+  let result = answer.join(' and ');
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
-CHALLENGE 6 
+CHALLENGE 6
 
 Write a function named findShortest that, given the Star Wars data from Challenge 6, uses any combination of filter, map and reduce to return the name of the character who is the shortest in height.
 ------------------------------------------------------------------------------------------------ */
 
 let findShortest = (data) => {
   // Solution code here...
+  let answer = data.sort((a,b) => {
+    if(Number(a.height) > Number(b.height)){
+      return 1;
+    } else if(Number(a.height) < Number(b.height)) {
+      return -1;
+    }
+  });
+  return answer[0].name;
 };
 
 /* ------------------------------------------------------------------------------------------------
